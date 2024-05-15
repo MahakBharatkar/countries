@@ -11,6 +11,8 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterRegions, setFilterRegions] = useState([]);
 
+  console.log('filterRegions', filterRegions);
+
   // console.log("countries", countries);
 
   const fetchData = async () => {
@@ -41,9 +43,16 @@ export default function Home() {
       <div className="bg-slate-100 dark:bg-slate-900">
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        <input type="text" onChange={handleSearch} placeholder="Search by country ..." className="w-[343px] md:w-[480px] bg-white dark:bg-slate-800 drop-shadow-md ml-4 md:ml-24 mt-10 h-[56px] md:h-[40px] focus:outline-none p-2" />
+        <div className="md:flex flex-col items-end justify-between ">
+          <input
+            type="text"
+            onChange={handleSearch}
+            placeholder="Search by country ..."
+            className="w-[343px] md:w-[480px] bg-white dark:bg-slate-800 drop-shadow-md ml-4 md:ml-24 mt-10 h-[56px] md:h-[40px] focus:outline-none p-2"
+          />
 
-        <CustomDropdown/>
+          <CustomDropdown filterRegions={filterRegions} setFilterRegions={setFilterRegions}/>
+        </div>
 
         <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {filteredCountries.map((country) => {
