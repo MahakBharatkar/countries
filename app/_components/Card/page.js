@@ -1,8 +1,9 @@
 import KeyValueText from "../KeyValueText/page";
 
-const Card = ({ item }) => {
+const Card = ({ item, setSelectedCountry }) => {
+    
   return (
-    <div className="max-w-sm rounded overflow-hidden bg-white dark:bg-slate-800 dark:text-white min-w-[300px] flex-col p-4">
+    <div className="max-w-sm rounded overflow-hidden bg-white dark:bg-slate-800 dark:text-white min-w-[300px] flex-col p-4 cursor-pointer" onClick={() => setSelectedCountry(item)}>
       <img
         src={item?.flags?.png}
         alt={item?.flags?.alt}
