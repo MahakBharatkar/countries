@@ -14,9 +14,6 @@ export default function Home() {
   const [filterRegions, setFilterRegions] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
 
-  // console.log("filterRegions", filterRegions);
-  // console.log("selectedCountry", selectedCountry);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -32,8 +29,12 @@ export default function Home() {
     setSearchQuery(event.target.value.toLowerCase());
   };
 
-  const filteredCountries = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchQuery)
+  const filteredCountries = countries.filter((country) =>{
+    const matchesSearch= country.name.common.toLowerCase().includes(searchQuery);
+    const matchesRegions = filterRegions.length===0 || filterRegions.includes(country.region);
+    return  matchesSearch && matchesRegions;
+  }
+    
   );
 
   useEffect(() => {
@@ -41,8 +42,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`${darkMode && "dark"} h-full`}>
-      <div className="bg-slate-100 dark:bg-slate-900 h-full">
+    <div className={`${darkMode && "dark"}  bg-slate-100`}>
+      <div className="bg-slate-100 dark:bg-slate-900">
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
         {!isEmpty(selectedCountry) ? (
           <CountryPage selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>

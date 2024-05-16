@@ -8,7 +8,7 @@ const CountryPage = ({selectedCountry, setSelectedCountry}) => {
     const {languages, currencies} = selectedCountry;
 
   return (
-    <div className="ml-4 md:ml-20">
+    <div className="ml-4 md:ml-20 h-screen">
     <button
       className="px-4 py-2 rounded bg-white dark:bg-slate-800 text-[14px] font-[300] text-black dark:text-white mt-6 md:mb-20 mb-4"
       onClick={() => setSelectedCountry({})}
@@ -22,13 +22,13 @@ const CountryPage = ({selectedCountry, setSelectedCountry}) => {
         <img className="rounded"
           src={selectedCountry?.flags?.svg}
           alt={selectedCountry?.flags?.alt} 
-          width={300}
-          height={200}
+          width={560}
+          height={400}
           
         ></img>
       </div>
 
-      <div className="md:row-span-2">
+      <div className="md:row-span-2 md:ml-20">
         <div className="font-[800] text-lg mb-4 ml-3">
           {selectedCountry.name?.common}
         </div>
@@ -72,7 +72,7 @@ const CountryPage = ({selectedCountry, setSelectedCountry}) => {
         ></KeyValueText>
       </div>
 
-      <div className="md:col-span-2 md:col-start-2 md:row-start-3 md:pl-3">
+      <div className="md:col-span-2 md:col-start-2 md:row-start-3 md:ml-20 pl-3">
         <span className="font-semibold text-sm">Border Countries:</span>
         {selectedCountry.borders.map((neighbour)=>{
           return(
